@@ -1,22 +1,31 @@
 class Solution {
 public:
-    int firstC=-1;
+    int prevColor;
+    vector<int> dx={1,-1,0,0};
+    vector<int> dy={0,0,1,-1};
+    int valid(int newx,int newy,int n, int m)
+    {
+        return newx>=0 && newx <n && newy >=0 && newy<m ;
+    }
+    void dfs(vector<vector<int>>& image, int sr, int sc, int newColor){
+        for(int i = 0 ; i < 4 ; i++)
+        {
+            int newx = sr+dx[i];
+            int newy = sc +dy[i];
+            if(valid(newx,newy,image.size(),image[0].size()) && image[newx][newy]==prevColor)
+            {
+                image[newx][newy]=newColor;
+                dfs(image,newx,newy,newColor);
+            }
+            
+        }
+    }
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
         
-        
-        
-        if(!(sr>=0 && sc>=0 && sr<image.size() && sc<image[0].size()))return image;
-        
-        if(firstC==-1)firstC=image[sr][sc];
-        if(image[sr][sc]!=newColor && image[sr][sc]==firstC)
-        {
-            image[sr][sc]=newColor;
-            floodFill(image,sr+1,sc,newColor);
-            floodFill(image,sr-1,sc,newColor);
-            floodFill(image,sr,sc+1,newColor);
-            floodFill(image,sr,sc-1,newColor);
-        }
-        
+        prevColor = image[sr][sc];
+        if(prevColor == newColor)return image;
+        image[sr][sc]=newColor;
+        dfs(image,sr,sc,newColor);
         return image;
     }
 };

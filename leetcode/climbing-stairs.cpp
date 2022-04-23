@@ -1,16 +1,16 @@
 class Solution {
 public:
     int climbStairs(int n) {
-        if(n<=3)return n;
-        int x = 2;
-        int y = 3;
-        int ans=3;
-        for(int i = 4; i <= n; i++)
+        if(n<=2)return n;
+        int f=1;
+        int s=2;
+        int l=3;
+        for(int i = 0 ; i <= n-3; i++)
         {
-            ans=x+y;
-            x=y;
-            y=ans;
+            l=f+s;
+            f=s;
+            s=l;
         }
-        return ans;
+        return l;
     }
 };

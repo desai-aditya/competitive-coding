@@ -1,4 +1,10 @@
-242
+244
+number-of-islands
+flood-fill
+min-cost-climbing-stairs
+climbing-stairs
+n-th-tribonacci-number
+fibonacci-number
 flatten-a-multilevel-doubly-linked-list
 longest-duplicate-substring
 rotting-oranges
@@ -25,7 +31,6 @@ word-search-ii
 implement-trie-prefix-tree
 word-search
 find-all-duplicates-in-an-array
-climbing-stairs
 island-perimeter
 jump-game
 dungeon-game
@@ -109,7 +114,6 @@ combination-sum-iv
 remove-nth-node-from-end-of-list
 number-of-submatrices-that-sum-to-target
 remove-all-adjacent-duplicates-in-string-ii
-fibonacci-number
 partition-list
 flatten-nested-list-iterator
 beautiful-arrangement-ii
@@ -197,7 +201,6 @@ subsets
 number-of-1-bits
 number-of-provinces
 single-element-in-a-sorted-array
-flood-fill
 find-the-town-judge
 valid-perfect-square
 check-if-it-is-a-straight-line
@@ -216,7 +219,6 @@ subarray-sum-equals-k
 leftmost-column-with-at-least-a-one
 search-in-rotated-sorted-array
 minimum-path-sum
-number-of-islands
 valid-parenthesis-string
 product-of-array-except-self
 perform-string-shifts

@@ -1,67 +1,44 @@
 class Solution {
-
-    private:
-    int m_num_islands=0;
-    int m_dx[4]={0,0,1,-1};
-    int m_dy[4]={1,-1,0,0};
-    
-    bool check(int curx,int cury, int gridx,int gridy)
+public:
+    int ans,n,m;
+    vector<int> dx = {0,0,1,-1};
+    vector<int> dy = {1,-1,0,0};
+    int valid(int newx, int newy)
     {
-        return curx>=0&&cury>=0&&curx<gridx&&cury<gridy;
+        return newx>=0 && newy>=0 && newx<n && newy<m;
     }
-    
-    void _dfs(vector<vector<char> >& grid, vector<vector<bool> >& vis, int curx, int cury)
+    void dfs(vector<vector<char>>& grid,int x, int y)
     {
-        if(!vis[curx][cury])
+        for(int i = 0 ; i < 4; i ++)
         {
-            vis[curx][cury]=1;
-            for(int s = 0 ; s<4;s++)
+            int newx = x+dx[i];
+            int newy = y+dy[i];
+            if(valid(newx,newy)&&grid[newx][newy]=='1')
             {
-                if(check(curx+m_dx[s],cury+m_dy[s],grid.size(),grid[0].size()) && grid[curx+m_dx[s]][cury+m_dy[s]]=='1' )
-                    _dfs(grid,vis,curx+m_dx[s],cury+m_dy[s]);
+                grid[newx][newy]=2;
+                dfs(grid,newx,newy);
             }
-            
-            
         }
     }
-        
-    void print_is(vector<vector<bool> > & vis)
-    {
-        for(int i = 0 ; i < vis.size(); i++)
-        {
-            for(int j = 0 ; j < vis[0].size(); j++)
-            {
-                cout<< vis[i][j]?1:0;
-            }
-            cout<<endl;
-        }
-    cout<<endl;    
-    }
-    
-    
-    public:
     int numIslands(vector<vector<char>>& grid) {
-        std::ios::sync_with_stdio(0); std::cin.tie(0); std::cout.tie(0); std::cerr.tie(0);
-        if(grid.size()==0)return 0;
-        if(grid[0].size()==0)return 0;
-        m_num_islands=0;
-        vector< vector<bool> > vis(grid.size(), vector<bool>(grid[0].size(),0));
-        for(int i = 0 ;i  < grid.size(); i++)
+        ans=0;
+        n=grid.size();
+        m= grid[0].size();
+        
+        for(int i = 0 ; i < n ; i ++)
         {
-            for(int j  =0 ; j < grid[0].size(); j++)
+            for(int j = 0 ; j < m ; j ++)
             {
-                if(!vis[i][j] && grid[i][j]=='1')
+        
+                if(grid[i][j]=='1')
                 {
-                    _dfs(grid,vis,i,j);        
-                    m_num_islands++;
-                    //print_is(vis);
+                    ans++;
+                    grid[i][j]=2;
+                    dfs(grid,i,j);
                 }
-                    
                 
             }
-            
         }
-        
-        return m_num_islands;
+        return ans;
     }
 };
